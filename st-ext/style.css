@@ -1,0 +1,43 @@
+.detached-gen-settings .dgen_note {
+    font-size: 0.85em;
+    opacity: 0.75;
+    margin: 4px 0 8px;
+    line-height: 1.4;
+}
+
+.detached-gen-settings .dgen_statusrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.detached-gen-settings .dgen_status {
+    flex: 1;
+    font-size: 0.85em;
+    opacity: 0.8;
+    word-break: break-word;
+}
+
+.detached-gen-settings .dgen_status.dgen_bad {
+    color: var(--warning, #e5776a);
+    opacity: 1;
+}
+
+.detached-gen-settings .dgen_status.dgen_good {
+    color: var(--golden, #6ac47a);
+    opacity: 1;
+}
+
+#dgen_testresult {
+    margin-top: 6px;
+    line-height: 1.4;
+}
+
+/* ST's .menu_button is width:min-content, which stacks Korean labels
+   vertically one glyph per line. */
+.detached-gen-settings .menu_button {
+    width: auto;
+    white-space: nowrap;
+    margin: 0;
+}

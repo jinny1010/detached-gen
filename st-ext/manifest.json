@@ -1,0 +1,14 @@
+{
+    "display_name": "Detached Gen",
+    "loading_order": 5,
+    "requires": [],
+    "optional": [],
+    "js": "index.js",
+    "css": "style.css",
+    "author": "jinny1010",
+    "version": "1.0.0",
+    "homePage": "",
+    "hooks": {
+        "activate": "onActivate"
+    }
+}
