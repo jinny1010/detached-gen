@@ -50,7 +50,7 @@ ST는 **클라이언트 소켓이 끊기면 상위 API 호출을 즉시 취소**
 | **종료(kill)** | 램 부족 시. **시간 기준 없음** | 페이지가 새로 로드됨, 기억 소실 | jobId를 localStorage에 → 리로드 후 자동 회수 |
 
 종료는 jetsam(커널 메모리 감시자)이 **램을 많이 먹는 백그라운드 앱부터** 골라 죽입니다.
-ST는 확장이 많아 무거운 편이라 종료가 드물지 않습니다. 그래서 회수 경로가 필수입니다.
+확장이 많은 무거운 ST 인스턴스일수록 종료가 잦으므로, 회수 경로를 기본으로 둡니다.
 
 ## 설치
 
@@ -63,7 +63,7 @@ ST는 확장이 많아 무거운 편이라 종료가 드물지 않습니다. 그
 cd /path/to/SillyTavern
 
 # 1) 서버 플러그인
-git clone https://github.com/jinny1010/detached-gen.git /tmp/detached-gen
+git clone https://github.com/siltax03-crypto/detached-gen.git /tmp/detached-gen
 mkdir -p plugins/detached-gen
 cp /tmp/detached-gen/index.js plugins/detached-gen/
 
