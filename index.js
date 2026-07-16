@@ -77,7 +77,7 @@ function finish(job, status, patch) {
     Object.assign(job, patch, { status, finishedAt: Date.now(), controller: null });
     persist(job);
     const ms = job.finishedAt - job.startedAt;
-    console.log(`[${PLUGIN_ID}] job ${job.id} ${status} (${ms} ms)`);
+    console.log(`[${PLUGIN_ID}] job ${job.id} ${status} (${ms} ms, polled ${job.polls || 0}x)`);
 }
 
 /**
@@ -185,8 +185,14 @@ async function init(router) {
 
     router.get('/poll', (req, res) => {
         const id = String(req.query?.jobId || '');
-        const job = jobs.get(id) || loadFromDisk(id);
+        const inMem = jobs.get(id);
+        const job = inMem || loadFromDisk(id);
         if (!job) return res.json({ status: 'unknown' });
+        // "폰이 묻는" 순간을 눈으로 볼 수 있게 (job 도는 동안만이라 몇 초치뿐).
+        if (inMem) {
+            inMem.polls = (inMem.polls || 0) + 1;
+            console.log(`[${PLUGIN_ID}] poll #${inMem.polls} ${id.slice(0, 8)} → ${inMem.status}`);
+        }
         res.json({
             status: job.status,
             httpStatus: job.httpStatus,
